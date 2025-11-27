@@ -2,17 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Not found</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 100px;
-}
-</style>
+<title>Redirecting...</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-<h1>404 - Shortlink tidak ditemukan</h1>
-<p>Periksa kodenya atau tambahkan ke <code>redirects.json</code>.</p>
+<script>
+async function run() {
+    // Ambil path setelah /Shortlink/
+    const path = window.location.pathname.replace(/\/Shortlink\//, "");
+
+    // Kalau path kosong -> kembali ke index
+    if (path === "" || path === "/") {
+        window.location.href = "./index.html";
+        return;
+    }
+
+    try {
+        const res = await fetch("./redirects.json");
+        const map = await res.json();
+
+        if (map[path]) {
+            window.location.href = map[path];
+        } else {
+            document.body.innerHTML = "<h2>404 - Shortlink tidak ditemukan</h2><p>Periksa kodenya di redirects.json</p>";
+        }
+    } catch (e) {
+        document.body.innerHTML = "<h2>Gagal memuat redirects.json</h2>";
+    }
+}
+
+run();
+</script>
 </body>
 </html>
