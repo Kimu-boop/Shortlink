@@ -1,12 +1,6 @@
 {
-  "g": "https://www.google.com",
-  "yt": "https://www.youtube.com",
-  "wa": "https://wa.me/6281234567890",
-  "blog": "https://example.com"
-}
-{
-  "g": "https://www.google.com",
-  "wa": "https://wa.me/6281234567890",
-  "promo": "https://tokopedia.com/tokoanda/promo-terbaru"
+    "g": "https://www.google.com",
+    "yt": "https://youtube.com",
+    "gh": "https://github.com"
 }
 
