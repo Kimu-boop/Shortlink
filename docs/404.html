@@ -9,22 +9,16 @@
 <script>
 async function run() {
     // Ambil path setelah /Shortlink/
-    const path = window.location.pathname.replace(/\/Shortlink\//, "");
-
-    // Kalau path kosong -> kembali ke index
-    if (path === "" || path === "/") {
-        window.location.href = "./index.html";
-        return;
-    }
+    const path = window.location.pathname.replace("/Shortlink/", "");
 
     try {
-        const res = await fetch("./redirects.json");
+        const res = await fetch("/Shortlink/docs/redirects.json");
         const map = await res.json();
 
         if (map[path]) {
             window.location.href = map[path];
         } else {
-            document.body.innerHTML = "<h2>404 - Shortlink tidak ditemukan</h2><p>Periksa kodenya di redirects.json</p>";
+            document.body.innerHTML = "<h2>404 - Shortlink tidak ditemukan</h2>";
         }
     } catch (e) {
         document.body.innerHTML = "<h2>Gagal memuat redirects.json</h2>";
